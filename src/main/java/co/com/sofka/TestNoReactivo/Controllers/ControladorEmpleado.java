@@ -4,6 +4,7 @@ import co.com.sofka.TestNoReactivo.DTOs.EmpleadoDTO;
 import co.com.sofka.TestNoReactivo.Services.ServicioEmpleado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,7 @@ public class ControladorEmpleado {
         return new ResponseEntity(servicioEmpleado.obtenerTodos(), HttpStatus.OK);
     }
 
-    @PostMapping("/crear")
+    @PostMapping(path = "/crear", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<EmpleadoDTO> create(@RequestBody EmpleadoDTO empleadoDTO) {
         return new ResponseEntity(servicioEmpleado.crear(empleadoDTO), HttpStatus.CREATED);
     }
